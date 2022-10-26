@@ -30,7 +30,7 @@ public class CustomersServiceClient {
 
     private final WebClient.Builder webClientBuilder;
 
-    private final String hostname = "http://customers-service:8081";
+    private final String hostname = "http://customers-service:8080";
 
     public Mono<OwnerDetails> getOwner(final int ownerId) {
         return webClientBuilder.build().get()

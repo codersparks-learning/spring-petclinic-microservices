@@ -1,13 +1,9 @@
 spring:
   application:
     name: customers-service
+  datasource:
+    schema: classpath*:db/hsqldb/schema.sql
+    data: classpath*:db/hsqldb/data.sql
   config:
     import: optional:configserver:${CONFIG_SERVER_URL:http://localhost:8888/}
 
-
----
-spring:
-  config:
-    activate:
-      on-profile: docker
-    import: configserver:http://config-server:8888

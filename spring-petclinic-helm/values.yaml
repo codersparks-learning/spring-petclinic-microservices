@@ -39,17 +39,17 @@ apps:
     image: example.com/spring-petclinic/spring-petclinic-customers-service
     tag: latest
     appName: customers-service
-    port: 8081
-    targetPort: 8081
+    port: 8080
+    targetPort: 8080
   visitsService:
     image: example.com/spring-petclinic/spring-petclinic-visits-service
     tag: latest
     appName: visits-service
-    port: 8082
-    targetPort: 8082
+    port: 8080
+    targetPort: 8080
   vetsService:
     image: example.com/spring-petclinic/spring-petclinic-vets-service
     tag: latest
     appName: vets-service
-    port: 8083
-    targetPort: 8083
+    port: 8080
+    targetPort: 8080

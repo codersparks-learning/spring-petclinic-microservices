@@ -1,4 +1,7 @@
 spring:
+  datasource:
+    schema: classpath*:db/hsqldb/schema.sql
+    data: classpath*:db/hsqldb/data.sql
   application:
     name: vets-service
   cache:
