@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.apps.customersService.appName }}-deployment
+  namespace: {{ .Values.nameSpace }}
+  labels:
+    app: spring-petclinic
+spec:
+  selector:
+    matchLabels:
+      name: {{ .Values.apps.customersService.appName }}
+  template:
+    metadata:
+      name: {{ .Values.apps.customersService.appName }}
+      labels:
+        name: {{ .Values.apps.customersService.appName }}
+    spec:
+      containers:
+        - name: {{ .Values.apps.customersService.appName }}
+          image: {{ .Values.apps.customersService.image }}:{{ .Values.apps.customersService.tag }}
+          imagePullPolicy: {{ .Values.imagePull }}
+          env:
+            - name: CONFIG_SERVER_URL
+              value: {{ .Values.configServerUrl }}
+            - name: SPRING_PROFILES_ACTIVE
+              value: KUBES

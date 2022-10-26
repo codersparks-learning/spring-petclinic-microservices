@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+
+metadata:
+  name: {{ .Values.apps.visitsService.appName }}
+  namespace: {{ .Values.nameSpace }}
+
+spec:
+  selector:
+    name: {{ .Values.apps.visitsService.appName }}
+  ports:
+    - port: {{ .Values.apps.visitsService.port }}
+      targetPort: {{ .Values.apps.visitsService.targetPort }}

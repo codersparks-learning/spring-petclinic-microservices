@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+
+metadata:
+  name: {{ .Values.apps.customersService.appName }}
+  namespace: {{ .Values.nameSpace }}
+
+spec:
+  selector:
+    name: {{ .Values.apps.customersService.appName }}
+  ports:
+    - port: {{ .Values.apps.customersService.port }}
+      targetPort: {{ .Values.apps.customersService.targetPort }}

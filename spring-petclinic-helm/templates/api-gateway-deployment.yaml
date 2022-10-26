@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.apps.apiGateway.appName }}-deployment
+  namespace: {{ .Values.nameSpace }}
+  labels:
+    app: spring-petclinic
+spec:
+  selector:
+    matchLabels:
+      name: {{ .Values.apps.apiGateway.appName }}
+  template:
+    metadata:
+      name: {{ .Values.apps.apiGateway.appName }}
+      labels:
+        name: {{ .Values.apps.apiGateway.appName }}
+    spec:
+      containers:
+        - name: {{ .Values.apps.apiGateway.appName }}
+          image: {{ .Values.apps.apiGateway.image }}:{{ .Values.apps.apiGateway.tag }}
+          imagePullPolicy: {{ .Values.imagePull }}
+          env:
+            - name: CONFIG_SERVER_URL
+              value: {{ .Values.configServerUrl }}

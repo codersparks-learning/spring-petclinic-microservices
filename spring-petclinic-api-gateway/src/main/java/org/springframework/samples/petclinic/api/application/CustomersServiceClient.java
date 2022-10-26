@@ -30,9 +30,11 @@ public class CustomersServiceClient {
 
     private final WebClient.Builder webClientBuilder;
 
+    private final String hostname = "http://customers-service:8081";
+
     public Mono<OwnerDetails> getOwner(final int ownerId) {
         return webClientBuilder.build().get()
-            .uri("http://customers-service/owners/{ownerId}", ownerId)
+            .uri(hostname + "/owners/{ownerId}", ownerId)
             .retrieve()
             .bodyToMono(OwnerDetails.class);
     }
