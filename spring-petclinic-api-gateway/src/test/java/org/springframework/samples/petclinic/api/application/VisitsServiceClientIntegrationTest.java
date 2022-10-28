@@ -5,12 +5,14 @@ import okhttp3.mockwebserver.MockWebServer;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.samples.petclinic.api.config.ServiceUrlConfigurationProperties;
 import org.springframework.samples.petclinic.api.dto.Visits;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.Objects;
 import java.util.function.Consumer;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -22,13 +24,15 @@ class VisitsServiceClientIntegrationTest {
 
     private VisitsServiceClient visitsServiceClient;
 
+    private final ServiceUrlConfigurationProperties configurationProperties = new ServiceUrlConfigurationProperties();
+
     private MockWebServer server;
 
     @BeforeEach
     void setUp() {
         server = new MockWebServer();
-        visitsServiceClient = new VisitsServiceClient(WebClient.builder());
-        visitsServiceClient.setHostname(server.url("/").toString());
+        configurationProperties.setVisits(server.url("/").toString());
+        visitsServiceClient = new VisitsServiceClient(configurationProperties, WebClient.builder());
     }
 
     @AfterEach
@@ -44,7 +48,7 @@ class VisitsServiceClientIntegrationTest {
 
         Mono<Visits> visits = visitsServiceClient.getVisitsForPets(Collections.singletonList(1));
 
-        assertVisitDescriptionEquals(visits.block(), PET_ID,"test visit");
+        assertVisitDescriptionEquals(Objects.requireNonNull(visits.block()), PET_ID,"test visit");
     }
 
 

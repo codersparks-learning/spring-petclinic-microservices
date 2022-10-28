@@ -17,39 +17,21 @@ apps:
     appName: api-gateway
     port: 8080
     targetPort: 8080
-  discoveryServer:
-    image: example.com/spring-petclinic/spring-petclinic-discovery-server
-    tag: latest
-    appName: discovery-server
-    port: 8761
-    targetPort: 8761
-  configServer:
-    image: example.com/spring-petclinic/spring-petclinic-config-server
-    tag: latest
-    appName: config-server
-    port: 8888
-    targetPort: 8888
-  adminServer:
-    image: example.com/spring-petclinic/spring-petclinic-admin-server
-    tag: latest
-    appName: admin-server
-    port: 9090
-    targetPort: 9090
   customersService:
     image: example.com/spring-petclinic/spring-petclinic-customers-service
     tag: latest
     appName: customers-service
-    port: 8080
+    port: 80
     targetPort: 8080
   visitsService:
     image: example.com/spring-petclinic/spring-petclinic-visits-service
     tag: latest
     appName: visits-service
-    port: 8080
+    port: 80
     targetPort: 8080
   vetsService:
     image: example.com/spring-petclinic/spring-petclinic-vets-service
     tag: latest
     appName: vets-service
-    port: 8080
+    port: 80
     targetPort: 8080

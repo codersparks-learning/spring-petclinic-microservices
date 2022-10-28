@@ -16,6 +16,7 @@
 package org.springframework.samples.petclinic.api.application;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.samples.petclinic.api.config.ServiceUrlConfigurationProperties;
 import org.springframework.samples.petclinic.api.dto.OwnerDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -30,11 +31,11 @@ public class CustomersServiceClient {
 
     private final WebClient.Builder webClientBuilder;
 
-    private final String hostname = "http://customers-service:8080";
+    private final ServiceUrlConfigurationProperties urlConfigurationProperties;
 
     public Mono<OwnerDetails> getOwner(final int ownerId) {
         return webClientBuilder.build().get()
-            .uri(hostname + "/owners/{ownerId}", ownerId)
+            .uri(urlConfigurationProperties.getCustomers() + "/owners/{ownerId}", ownerId)
             .retrieve()
             .bodyToMono(OwnerDetails.class);
     }

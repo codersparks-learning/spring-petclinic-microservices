@@ -1,6 +1,9 @@
 spring:
   application:
     name: customers-service
+  jpa:
+    hibernate:
+      ddl-auto: none
   datasource:
     schema: classpath*:db/hsqldb/schema.sql
     data: classpath*:db/hsqldb/data.sql
